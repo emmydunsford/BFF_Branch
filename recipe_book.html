@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Friend Recipe Book!</title>
+    <title>Recipe Book</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -101,32 +101,31 @@
 <body>
 
     <header>
-        <h1>Friend Recipe Book</h1>
-        <p>Add your favorite recipes!</p>
+        <h1>My Recipe Book</h1>
+        <p>Share your favorite recipes with friends!</p>
     </header>
 
     <!-- Recipe Cards Section -->
     <section id="recipe-cards">
+        <!-- Gigi Hadid's Spicy Rigatoni Pasta -->
         <div class="recipe-card">
             <h2>Gigi Hadid's Spicy Rigatoni Pasta</h2>
-    <ul>
-        <li><strong>Ingredients:</strong> 1 lb rigatoni, 2 tbsp olive oil, 1 small onion, 2 cloves garlic (minced), 1/2 cup heavy cream, 1/4 cup tomato paste, 1 tbsp red pepper flakes, 1 tbsp butter, 1/4 cup Parmesan cheese, Salt and pepper to taste</li>
-        <li><strong>Instructions:</strong> 
-            <ol>
-                <li>Boil the rigatoni pasta according to package instructions and set aside.</li>
-                <li>In a large skillet, heat olive oil over medium heat and sauté the chopped onion and garlic until soft.</li>
-                <li>Add the tomato paste and cook for 1-2 minutes until it darkens slightly.</li>
-                <li>Stir in the heavy cream and red pepper flakes. Cook for about 2-3 minutes until the sauce thickens.</li>
-                <li>Reduce the heat and add the butter and Parmesan, stirring until smooth. Season with salt and pepper to taste.</li>
-                <li>Add the cooked rigatoni to the sauce and toss to coat evenly.</li>
-                <li>Serve with extra Parmesan and a sprinkle of red pepper flakes for garnish. Enjoy!</li>
-            </ol>
-        </li>
-    </ul>
-    <img src="https://legallyhealthyblonde.com/wp-content/uploads/2022/09/gigihadid-edited-13.jpg" alt="Gigi Hadid's Spicy Rigatoni Pasta">
-</div>
-        
-        <!-- Additional recipe cards can be added below in the same format -->
+            <ul>
+                <li><strong>Ingredients:</strong> 1 lb rigatoni, 2 tbsp olive oil, 1 small onion, 2 cloves garlic (minced), 1/2 cup heavy cream, 1/4 cup tomato paste, 1 tbsp red pepper flakes, 1 tbsp butter, 1/4 cup Parmesan cheese, Salt and pepper to taste</li>
+                <li><strong>Instructions:</strong>
+                    <ol>
+                        <li>Boil the rigatoni pasta according to package instructions and set aside.</li>
+                        <li>In a large skillet, heat olive oil over medium heat and sauté the chopped onion and garlic until soft.</li>
+                        <li>Add the tomato paste and cook for 1-2 minutes until it darkens slightly.</li>
+                        <li>Stir in the heavy cream and red pepper flakes. Cook for about 2-3 minutes until the sauce thickens.</li>
+                        <li>Reduce the heat and add the butter and Parmesan, stirring until smooth. Season with salt and pepper to taste.</li>
+                        <li>Add the cooked rigatoni to the sauce and toss to coat evenly.</li>
+                        <li>Serve with extra Parmesan and a sprinkle of red pepper flakes for garnish. Enjoy!</li>
+                    </ol>
+                </li>
+            </ul>
+            <img src="gigi-rigatoni.jpg" alt="Gigi Hadid's Spicy Rigatoni Pasta">
+        </div>
     </section>
 
     <!-- Button to Add a Recipe -->
@@ -143,12 +142,6 @@
     </div>
 
     <script>
-        // Function to toggle the recipe submission form visibility
-        function toggleForm() {
-            const form = document.getElementById('recipe-form');
-            form.style.display = form.style.display === 'none' ? 'block' : 'none';
-        }
-
         // Function to add a new recipe to the recipe cards section
         function addRecipe() {
             const name = document.getElementById('recipe-name').value;
@@ -157,6 +150,7 @@
             const imageUrl = document.getElementById('image-url').value;
 
             if (name && ingredients && instructions) {
+                // Create the new recipe card
                 const recipeCard = document.createElement('div');
                 recipeCard.classList.add('recipe-card');
 
@@ -169,7 +163,11 @@
                     ${imageUrl ? `<img src="${imageUrl}" alt="${name}">` : ''}
                 `;
 
+                // Append the new card to the recipe container
                 document.getElementById('recipe-cards').appendChild(recipeCard);
+
+                // Save the new recipe to localStorage
+                saveRecipes();
 
                 // Clear the form inputs
                 document.getElementById('recipe-name').value = '';
@@ -182,7 +180,51 @@
                 alert('Please fill in all required fields.');
             }
         }
-    </script>
 
-</body>
-</html>
+        // Function to save all recipes to localStorage
+        function saveRecipes() {
+            const recipeCards = document.querySelectorAll('.recipe-card');
+            const recipes = [];
+
+            recipeCards.forEach(card => {
+                const name = card.querySelector('h2').innerText;
+                const ingredients = card.querySelector('ul').children[0].innerText.replace('Ingredients: ', '');
+                const instructions = card.querySelector('ul').children[1].innerText.replace('Instructions: ', '');
+                const imageUrl = card.querySelector('img') ? card.querySelector('img').src : '';
+
+                recipes.push({ name, ingredients, instructions, imageUrl });
+            });
+
+            // Store recipes in localStorage
+            localStorage.setItem('recipes', JSON.stringify(recipes));
+        }
+
+        // Function to load saved recipes from localStorage
+        function loadRecipes() {
+            const savedRecipes = JSON.parse(localStorage.getItem('recipes')) || [];
+
+            savedRecipes.forEach(recipe => {
+                const recipeCard = document.createElement('div');
+                recipeCard.classList.add('recipe-card');
+
+                recipeCard.innerHTML = `
+                    <h2>${recipe.name}</h2>
+                    <ul>
+                        <li><strong>Ingredients:</strong> ${recipe.ingredients}</li>
+                        <li><strong>Instructions:</strong> ${recipe.instructions}</li>
+                    </ul>
+                    ${recipe.imageUrl ? `<img src="${recipe.imageUrl}" alt="${recipe.name}">` : ''}
+                `;
+
+                document.getElementById('recipe-cards').appendChild(recipeCard);
+            });
+        }
+
+        // Function to toggle the recipe submission form visibility
+        function toggleForm() {
+            const form = document.getElementById('recipe-form');
+            form.style.display = form.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Load recipes when the page is loaded
+        window.onload = loadRecipes
