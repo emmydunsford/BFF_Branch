@@ -1,8 +1,11 @@
 export type Character = {
   name: string;
+  description: string;
   friendshipLevel: number;
   currentStep: string;
-  interests: string[];
+  vibes: string[];
+  activities: string[];
+  beverages: string[];
 };
 
 export type GameState = {

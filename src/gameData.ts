@@ -1,40 +1,97 @@
 import { Character } from "./types";
 
+export const vibeOptions = [
+  "slaying",
+  "rizzing",
+  "doomscrolling",
+  "booktok",
+  "gatekeeping",
+  "main character energy",
+  "touch grass",
+  "chronically online",
+  "aesthetic",
+  "fit check",
+  "no thoughts head empty",
+  "living laugh loving",
+  "girlbossing",
+  "throwing shade",
+  "being unserious",
+  "material gworl",
+  "terminally online",
+  "gaslight gatekeep girlboss",
+  "bestie vibes",
+  "geeking",
+  "tweaking",
+];
+
+export const beverageOptions = ["tea", "coffee", "cocoa", "tequila"];
+
+export const activityOptions = [
+  "reading",
+  "gaming",
+  "walking",
+  "movies",
+  "cooking",
+  "music",
+];
+
 export const characters: Character[] = [
   {
     name: "Emily",
+    description: "The aesthetic booktok queen",
     friendshipLevel: 0,
     currentStep: "initial",
-    interests: ["reading", "slay", "photography", "tea"],
+    vibes: ["booktok", "slaying", "aesthetic", "main character energy"],
+    activities: ["reading", "movies"],
+    beverages: ["tea", "cocoa"],
   },
   {
     name: "Raymond",
+    description: "The online menace",
     friendshipLevel: 0,
     currentStep: "initial",
-    interests: ["gaming", "coding", "tequila", "rizz"],
+    vibes: ["doomscrolling", "chronically online", "rizzing", "throwing shade"],
+    activities: ["gaming", "movies"],
+    beverages: ["tequila", "coffee"],
   },
   {
     name: "Hayden",
+    description: "The wholesome one",
     friendshipLevel: 0,
     currentStep: "initial",
-    interests: ["sports", "music", "cooking", "coffee"],
+    vibes: ["touch grass", "fit check", "living laugh loving", "bestie vibes"],
+    activities: ["walking", "cooking"],
+    beverages: ["coffee", "tea"],
+  },
+  {
+    name: "Saarang",
+    description: "The chaotic one",
+    friendshipLevel: 0,
+    currentStep: "initial",
+    vibes: [
+      "terminally online",
+      "no thoughts head empty",
+      "girlbossing",
+      "being unserious",
+    ],
+    activities: ["music", "gaming"],
+    beverages: ["cocoa", "tequila"],
   },
 ];
 
 export const player: Character = {
   name: "Emmy",
+  description: "The ultimate girlboss",
   friendshipLevel: 0,
   currentStep: "initial",
-  interests: ["science", "books", "tea", "coding", "tequila", "rizz"],
+  vibes: [
+    "gaslight gatekeep girlboss",
+    "material gworl",
+    "slaying",
+    "rizzing",
+    "doomscrolling",
+    "booktok",
+  ],
+  activities: ["reading", "gaming"],
+  beverages: ["tea", "tequila"],
 };
-
-export const beverageOptions = ["tea", "coffee", "cocoa", "tequila"];
-
-export const activityOptions = [
-  "reading together",
-  "playing video games",
-  "going for a walk",
-  "watching a movie",
-  "cooking together",
-  "listening to music",
-];
