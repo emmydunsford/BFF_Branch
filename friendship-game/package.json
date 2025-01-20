@@ -6,15 +6,19 @@
   "scripts": {
     "start": "webpack serve --open",
     "build": "webpack --mode production",
-    "dev": "webpack serve --mode development"
+    "dev": "webpack serve --mode development",
+    "clean": "rm -rf dist",
+    "prebuild": "npm run clean"
   },
   "keywords": [
     "game",
     "typescript",
-    "friendship"
+    "friendship",
+    "algorithm",
+    "browser-game"
   ],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@types/node": "^20.11.0",
     "@types/webpack-env": "^1.18.0",
