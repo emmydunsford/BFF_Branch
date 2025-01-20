@@ -1,11 +1,12 @@
 # The Friendship Algorithm Game
 
-A game where Emmy tries to befriend characters. She tries hard but sometimes makes acoustic choices. Help her out.
+A game where Emmy tries to befriend characters. She tries hard but sometimes makes acoustic choices. Help her out.\
+Inspired by [the Oregon Trail](https://en.wikipedia.org/wiki/The_Oregon_Trail_(series)) and the Big Bang Theory's [Friendship Algorithm](https://www.youtube.com/watch?v=k0xgjUhEG3U).
 
 ## Download & Play
 
-1. Go to the [Releases](https://github.com/yourusername/friendship-algorithm-game/releases) page
-2. Download the latest release zip file
+1. Go to the [Releases](https://github.com/emmydunsford/bff_branch/releases) page
+2. Download the latest release zip file in "Assets" (the first one, and **not** the Source Code files!!)
 3. Extract the zip file
 4. Open the extracted folder
 5. Double click `index.html` to play in your browser
@@ -32,10 +33,10 @@ A game where Emmy tries to befriend characters. She tries hard but sometimes mak
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/friendship-algorithm-game.git
+git clone https://github.com/emmydunsford/bff_branch.git
 
 # Navigate to project directory
-cd friendship-algorithm-game
+cd bff_branch/friendship-game
 
 # Install dependencies
 npm install
@@ -59,3 +60,7 @@ npm start
 - TypeScript
 - Webpack
 - HTML/CSS
+
+
+## Reference
+![img.png](assets/friendship_flowchart.png)
