@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Friend Recipe Book!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fce4ec;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        header {
+            background-color: #ec407a;
+            color: white;
+            padding: 20px;
+            width: 100%;
+            text-align: center;
+        }
+        h1 {
+            margin: 0;
+        }
+        .recipe-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            padding: 20px;
+            width: 80%;
+            max-width: 600px;
+            border: 2px solid #f8bbd0;
+        }
+        .recipe-card h2 {
+            color: #ec407a;
+            margin-bottom: 10px;
+        }
+        .recipe-card ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .recipe-card li {
+            margin: 5px 0;
+            color: #d81b60;
+        }
+        .recipe-card img {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        .add-recipe-btn {
+            background-color: #d81b60;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .add-recipe-btn:hover {
+            background-color: #c2185b;
+        }
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 30px;
+        }
+        .form-container input, .form-container textarea {
+            width: 100%;
+            max-width: 500px;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ec407a;
+            border-radius: 5px;
+            background-color: #f8bbd0;
+            color: #d81b60;
+        }
+        .form-container button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #ec407a;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .form-container button:hover {
+            background-color: #c2185b;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Friend Recipe Book</h1>
+        <p>Add your favorite recipes!</p>
+    </header>
+
+    <!-- Recipe Cards Section -->
+    <section id="recipe-cards">
+        <div class="recipe-card">
+            <h2>Gigi Hadid's Spicy Rigatoni Pasta</h2>
+    <ul>
+        <li><strong>Ingredients:</strong> 1 lb rigatoni, 2 tbsp olive oil, 1 small onion, 2 cloves garlic (minced), 1/2 cup heavy cream, 1/4 cup tomato paste, 1 tbsp red pepper flakes, 1 tbsp butter, 1/4 cup Parmesan cheese, Salt and pepper to taste</li>
+        <li><strong>Instructions:</strong> 
+            <ol>
+                <li>Boil the rigatoni pasta according to package instructions and set aside.</li>
+                <li>In a large skillet, heat olive oil over medium heat and sauté the chopped onion and garlic until soft.</li>
+                <li>Add the tomato paste and cook for 1-2 minutes until it darkens slightly.</li>
+                <li>Stir in the heavy cream and red pepper flakes. Cook for about 2-3 minutes until the sauce thickens.</li>
+                <li>Reduce the heat and add the butter and Parmesan, stirring until smooth. Season with salt and pepper to taste.</li>
+                <li>Add the cooked rigatoni to the sauce and toss to coat evenly.</li>
+                <li>Serve with extra Parmesan and a sprinkle of red pepper flakes for garnish. Enjoy!</li>
+            </ol>
+        </li>
+    </ul>
+    <img src="gigi-rigatoni.jpg" alt="Gigi Hadid's Spicy Rigatoni Pasta">
+</div>
+        
+        <!-- Additional recipe cards can be added below in the same format -->
+    </section>
+
+    <!-- Button to Add a Recipe -->
+    <button class="add-recipe-btn" onclick="toggleForm()">Add Your Recipe</button>
+
+    <!-- Recipe Submission Form -->
+    <div class="form-container" id="recipe-form" style="display: none;">
+        <h3>Add a New Recipe</h3>
+        <input type="text" id="recipe-name" placeholder="Recipe Name" required>
+        <textarea id="ingredients" placeholder="Ingredients (separate by commas)" rows="4" required></textarea>
+        <textarea id="instructions" placeholder="Instructions" rows="6" required></textarea>
+        <input type="text" id="image-url" placeholder="Image URL (optional)">
+        <button onclick="addRecipe()">Submit Recipe</button>
+    </div>
+
+    <script>
+        // Function to toggle the recipe submission form visibility
+        function toggleForm() {
+            const form = document.getElementById('recipe-form');
+            form.style.display = form.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Function to add a new recipe to the recipe cards section
+        function addRecipe() {
+            const name = document.getElementById('recipe-name').value;
+            const ingredients = document.getElementById('ingredients').value;
+            const instructions = document.getElementById('instructions').value;
+            const imageUrl = document.getElementById('image-url').value;
+
+            if (name && ingredients && instructions) {
+                const recipeCard = document.createElement('div');
+                recipeCard.classList.add('recipe-card');
+
+                recipeCard.innerHTML = `
+                    <h2>${name}</h2>
+                    <ul>
+                        <li><strong>Ingredients:</strong> ${ingredients}</li>
+                        <li><strong>Instructions:</strong> ${instructions}</li>
+                    </ul>
+                    ${imageUrl ? `<img src="${imageUrl}" alt="${name}">` : ''}
+                `;
+
+                document.getElementById('recipe-cards').appendChild(recipeCard);
+
+                // Clear the form inputs
+                document.getElementById('recipe-name').value = '';
+                document.getElementById('ingredients').value = '';
+                document.getElementById('instructions').value = '';
+                document.getElementById('image-url').value = '';
+
+                toggleForm(); // Hide the form after submission
+            } else {
+                alert('Please fill in all required fields.');
+            }
+        }
+    </script>
+
+</body>
+</html>
